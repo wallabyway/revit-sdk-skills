@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revit SDK Skills</title>
+  <style>
+    :root {
+      --bg: #f6f8fa;
+      --card: #ffffff;
+      --text: #1f2328;
+      --muted: #59636e;
+      --accent: #0969da;
+      --border: #d1d9e0;
+      --code: #f0f2f5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    h1 { margin: 0 0 8px; font-size: 2.2rem; }
+    .tagline { color: var(--muted); font-size: 1.1rem; }
+    .url-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+    .url-box a {
+      color: var(--accent);
+      font-size: 1.25rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .url-box a:hover { text-decoration: underline; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+    h2 { margin-top: 0; font-size: 1.4rem; }
+    h3 { margin-top: 24px; margin-bottom: 8px; font-size: 1.1rem; }
+    p { margin: 0 0 12px; color: var(--text); }
+    .muted { color: var(--muted); }
+    code {
+      background: var(--code);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.9em;
+    }
+    pre {
+      background: var(--code);
+      padding: 14px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.9em;
+      border: 1px solid var(--border);
+    }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    .note {
+      border-left: 4px solid var(--accent);
+      background: #ddf4ff;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 16px;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Revit SDK Skills</h1>
+      <p class="tagline">Public documentation knowledge base for the Autodesk Revit API</p>
+    </header>
+
+    <div class="url-box">
+      <div class="muted" style="margin-bottom: 6px;">Public GitHub Pages URL</div>
+      <a href="https://revit-sdk-skills.github.io/" target="_blank" rel="noopener">revit-sdk-skills.github.io</a>
+    </div>
+
+    <section class="card">
+      <h2>What is this?</h2>
+      <p>
+        This site hosts a searchable, agent-readable reference of the Revit API.
+        The documentation is split by Revit release year and organized by technical domain
+        (application lifecycle, geometry, MEP, structural, events, exceptions, etc.).
+      </p>
+      <p>
+        The entry point for agents is <a href="SKILL.md"><code>SKILL.md</code></a>.
+        It tells an agent which topic files to read for a given Revit API question.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>How to install / use this skill</h2>
+      <p class="muted">
+        Point your agent at the public URL and ask it to read <code>SKILL.md</code> first.
+        The agent can then retrieve the relevant sub-markdown files on demand.
+      </p>
+
+      <h3>Claude Code</h3>
+      <ul>
+        <li>Add this project instruction to your repo's <code>CLAUDE.md</code> or Claude Code project settings:</li>
+      </ul>
+      <pre>When answering questions about the Autodesk Revit API, first read
+https://revit-sdk-skills.github.io/SKILL.md, then retrieve the topic
+files it recommends for the specific namespace or class being asked about.</pre>
+      <ul>
+        <li>Alternatively, paste the URL <code>https://revit-sdk-skills.github.io/SKILL.md</code> into the chat and ask Claude to use it as the source of truth.</li>
+      </ul>
+
+      <h3>OpenAI Codex</h3>
+      <ul>
+        <li>In Codex CLI, add the URL to your project instructions or <code>.codex/instructions.md</code>:</li>
+      </ul>
+      <pre>For Revit API questions, fetch https://revit-sdk-skills.github.io/SKILL.md
+and follow its retrieval strategy. Read only the topic files relevant to
+the user's specific namespace, class, or workflow.</pre>
+      <ul>
+        <li>In ChatGPT with Codex, share the URL and ask Codex to browse it, then dive into the linked topic files.</li>
+      </ul>
+
+      <h3>Kimi Code</h3>
+      <ul>
+        <li>Create a project skill or custom instruction that loads the steering file:</li>
+      </ul>
+      <pre>Load https://revit-sdk-skills.github.io/SKILL.md as the Revit SDK skill.
+When the user asks about Revit API types, methods, or workflows, read the
+per-year INDEX.md to locate the exact type, then retrieve the matching topic file(s).</pre>
+      <ul>
+        <li>Or clone the repo and reference the local <code>docs/SKILL.md</code> directly from Kimi Code's skill configuration.</li>
+      </ul>
+
+      <div class="note">
+        <strong>Tip:</strong> Always point the agent at <code>.../SKILL.md</code>, not just the root page.
+        <code>SKILL.md</code> contains the retrieval strategy and categorized index that lets the agent
+        decide which sub-files are worth reading.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Repository structure</h2>
+      <pre>docs/
+├── index.html          # This page
+├── SKILL.md            # Agent steering file (start here)
+├── revit-api-2025/
+│   ├── SKILL.md        # Flat file list for 2025
+│   ├── INDEX.md        # Type-to-file lookup for 2025
+│   └── *.md            # Topic files by namespace
+└── revit-api-2026/
+    ├── SKILL.md        # Flat file list for 2026
+    ├── INDEX.md        # Type-to-file lookup for 2026
+    └── *.md            # Topic files by namespace</pre>
+    </section>
+
+    <footer>
+      <p>Built from <a href="https://github.com/wallabyway/revit-sdk-skills" target="_blank" rel="noopener">wallabyway/revit-sdk-skills</a></p>
+    </footer>
+  </div>
+</body>
+</html>
